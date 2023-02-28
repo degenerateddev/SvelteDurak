@@ -1,0 +1,5 @@
+venv/
+
+backend/backend/__pycache__/
+backend/durak/__pycache__/
+backend/durak/migrations/
