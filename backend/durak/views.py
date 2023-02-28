@@ -1,27 +1,22 @@
-from django.shortcuts import render
-from django.http import JsonResponse, HttpResponse
-from .models import *
-import json
-from django.core import serializers
+from rest_framework.decorators import api_view, permission_classes, authentication_classes
+from rest_framework.views import Response
 
-# Create your views here.
-def index(request):
-    if request.method == "POST":
-        pass
-    
-    else:
-        return JsonResponse({
-            "durak" : "game"
-        })
+from .models import BotGame
+from .serializers import BotGameSerializer
 
+@api_view(["POST"])
 def save_win(request):
-    if request.method == "POST":
-        win = BotGame.objects.create(winner=1)
+    serialize = BotGameSerializer(data=request.data)
+    if serialize.is_valid(raise_exception=True):
+        win = serialize.save()
 
+        serialized = BotGameSerializer(win)
+
+        return Response(serialized.data)
+
+@api_view(["GET"])
 def get_games(request):
-    if request.method == "GET":
-        # Serializer should be more complex and show less data later on
-        games = list(BotGame.objects.all())
-        games_json = serializers.serialize("json", games)
+    games = BotGame.objects.all()
+    serialized = BotGameSerializer(games, many=True)
 
-        return HttpResponse(games_json, content_type="application/json")
+    return Response(serialized.data)

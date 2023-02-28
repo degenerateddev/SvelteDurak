@@ -2,10 +2,13 @@
     import Button from "../components/Button.svelte"
     import Navbar from "../components/Navbar.svelte"
     import type { PageData } from './$types';
+    import type { BotGame } from "../lib/types";
 
     export let data: PageData;
 
-    let games = data.games;
+    let games: Array<BotGame> = data.games;
+    
+    console.log(games)
 </script>
 
 <Navbar></Navbar>
@@ -16,11 +19,12 @@
     </h1>
 
     <div class="result">
-        {#each games as game}
-            <h5>Game no. {game.pk}</h5>
-            <h5>{game.fields.winner}</h5>
-            <h5>{game.fields.uuid}</h5>
-            <h5>{game.fields.play_date}</h5>
-        {/each}
+        {#if games !== undefined}
+            {#each games as game}
+                <h5>Game no. {game.id}</h5>
+                <h5>{game.winner}</h5>
+                <h5>{game.play_date}</h5>
+            {/each}
+        {/if}
     </div>
 </div>

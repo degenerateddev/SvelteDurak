@@ -1,6 +1,6 @@
 <script lang="ts">
-    export let suit;
-    export let value;
+    export let suit : string;
+    export let value : string;
     export let small = false;
     export let field = []; // via bind:field connected to field_cards in 'play' route so field_cards can be updated
 </script>

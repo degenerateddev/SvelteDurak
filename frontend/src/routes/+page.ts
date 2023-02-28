@@ -1,7 +1,8 @@
+import { error } from '@sveltejs/kit';
 import type { PageLoad } from './$types';
  
-export const load = (async ({ params }) => {
-    const response = await fetch("http://127.0.0.1:8000/api/get-games", {
+export const load = (async (event) => {
+    const response = await fetch("http://127.0.0.1:8000/api/get-games/", {
         method: "GET",
         headers: new Headers({
             "Accept": "application/json"
@@ -10,12 +11,11 @@ export const load = (async ({ params }) => {
 
     if (response.ok) {
         const data = await response.json()
-        console.log(data)
         return {
             games: data
         }
     }
-    return {
-        status: 500
-    };
+
+    throw error(500)
+
 }) satisfies PageLoad;
