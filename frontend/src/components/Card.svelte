@@ -1,19 +1,15 @@
 <script lang="ts">
+    import type { GameCard } from "$lib/types";
+
     export let suit : string;
-    export let value : string;
+    export let value : number | string;
     export let small = false;
-    export let field = []; // via bind:field connected to field_cards in 'play' route so field_cards can be updated
+    export let field: Array<GameCard> = []; // via bind:field connected to field_cards in 'play' route so field_cards can be updated
 </script>
 
-{#if small}
-    <a class="card-container" on:click>
-        <img class="card-small rounded" src="/assets/cards/single/{suit.slice(0, -1).toUpperCase()}-{value}.svg" />
-    </a>
-{:else}
-    <a class="card-container" on:click>
-        <img class="card rounded" src="/assets/cards/single/{suit.slice(0, -1).toUpperCase()}-{value}.svg" />
-    </a>
-{/if}
+<a class="card-container shadow-lg shadow-black w-fit" on:click>
+    <img alt="card" class:card={!small} class:card-small={small} class="card-small rounded" src="/assets/cards/single/{suit.slice(0, -1).toUpperCase()}-{value}.svg" />
+</a>
 
 <style>
     .card-container {

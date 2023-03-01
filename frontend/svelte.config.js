@@ -7,7 +7,8 @@ const config = {
 		adapter: adapter(),
 		alias: {
 			"admin-comps": "src/admin-components",
-			"comps": "src/components"
+			"comps": "src/components",
+			"lib": "src/lib"
 		}
 	},
 	preprocess: [

@@ -4,6 +4,7 @@ from .models import BotGame
 
 class BotGameSerializer(serializers.ModelSerializer):
     winner = serializers.CharField(required=True)
+    play_date = serializers.DateTimeField(format="%d-%m-%Y#%H:%M:%S")
 
     class Meta:
         model = BotGame
