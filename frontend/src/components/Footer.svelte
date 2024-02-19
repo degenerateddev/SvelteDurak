@@ -6,13 +6,10 @@
     <div class="flex justify-center">
         <ul class="text-center space-y-2">
             <li>
-                <Anchor text="Legal Disclosure" to="/legal"></Anchor>
+                <Anchor text="Legal" to="/legal"></Anchor>
             </li>
             <li>
-                <Anchor text="Privacy Policy" to="/privacy"></Anchor>
-            </li>
-            <li>
-                <Anchor text="Contact" to="/contact"></Anchor>
+                <Anchor text="Privacy" to="/privacy"></Anchor>
             </li>
         </ul>
     </div>

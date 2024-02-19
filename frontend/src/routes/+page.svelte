@@ -1,8 +1,7 @@
 <script lang="ts">
-    import Button from "../components/Button.svelte"
     import type { PageData } from './$types';
     import type { BotGame } from "$lib/types";
-    import Game from "comps/Game.svelte";
+    import DateField from "comps/DateField.svelte";
 
     export let data: PageData;
 
@@ -14,11 +13,44 @@
         Recent Games
     </h1>
 
-    <div class="w-1/2 mx-auto space-y-2">
-        {#if games !== undefined}
-            {#each games as game}
-                <Game game={game}></Game>
-            {/each}
-        {/if}
-    </div>
+    <table class="container mx-auto max-w-5xl table-auto text-zinc-200 rounded-md">
+        <thead>
+            <tr>
+                <th>Game no.</th>
+                <th>Winner</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {#if games !== undefined}
+                {#each games as game, index}
+                    {#if index % 2 == 0}
+                        <tr class="bg-slate-800">
+                            <td>
+                                {game.id}
+                            </td>
+                            <td>
+                                {game.winner}
+                            </td>
+                            <td>
+                                <DateField date={game.play_date}></DateField>
+                            </td>
+                        </tr>
+                    {:else}
+                        <tr class="bg-slate-700">
+                            <td>
+                                {game.id}
+                            </td>
+                            <td>
+                                {game.winner}
+                            </td>
+                            <td>
+                                <DateField date={game.play_date}></DateField>
+                            </td>
+                        </tr>
+                    {/if}
+                {/each}
+            {/if}
+        </tbody>
+    </table>
 </div>

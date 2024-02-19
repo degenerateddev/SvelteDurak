@@ -19,10 +19,6 @@
           <Anchor text="How to play" to="/howto"></Anchor>
 
         </div>
-        <div class="hidden md:flex items-center justify-end md:flex-1 gap-5">
-          <Button title="Sign in"></Button>
-          <Button title="Sign up"></Button>
-        </div>
       </div>
 
 </div>

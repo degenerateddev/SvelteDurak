@@ -1,8 +1,9 @@
 import { error } from '@sveltejs/kit';
 import type { PageLoad } from './$types';
+import { API } from 'lib/env';
  
 export const load = (async (event) => {
-    const response = await fetch("http://127.0.0.1:8000/api/get-games/", {
+    const response = await fetch(API + "game/", {
         method: "GET",
         headers: new Headers({
             "Accept": "application/json"
